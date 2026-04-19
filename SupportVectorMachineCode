@@ -1,0 +1,44 @@
+import pandas as pd
+
+from google.colab import files
+uploaded = files.upload()
+
+df = pd.read_csv("svmdata.csv")
+
+df.shape
+
+df.columns
+
+df.info()
+
+df['diagnosis'] = df['diagnosis'].apply(lambda x: 1 if x == 'M' else 0)
+df = df.drop(['id', 'Unnamed: 32'], axis=1)
+df = df.dropna()
+
+X = df.drop("diagnosis", axis=1)
+y = df["diagnosis"]
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=26
+)
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+from sklearn.svm import SVC
+model = SVC(kernel='linear')  # kernels: linear, rbf, poly, sigmoid
+model.fit(X_train, y_train)
+
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+kernels = ['linear', 'rbf', 'poly', 'sigmoid']
+for k in kernels:
+    model = SVC(kernel=k)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    acc = accuracy_score(y_test, y_pred)
+    print("Kernel:", k, "Accuracy:", acc)
+
