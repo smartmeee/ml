@@ -1,0 +1,63 @@
+import numpy as np
+# Input dataset
+X = np.array([
+    [0,0],
+    [0,1],
+    [1,0],
+    [1,1]
+])
+# Target output (AND)
+T = np.array([0,0,0,1])
+# Initialize
+w = np.zeros(2)
+b = 0
+lr = 0.1
+epochs = 10
+# Activation function
+def activation(yin):
+    return 1 if yin > 0 else 0
+# Training
+for _ in range(epochs):
+    for i in range(len(X)):
+        yin = np.dot(X[i], w) + b
+        y = activation(yin)
+        w = w + lr * (T[i] - y) * X[i]
+        b = b + lr * (T[i] - y)
+print("AND Gate")
+print("Final Weights:", w)
+print("Final Bias:", b)
+# Testing
+for i in range(len(X)):
+    print(X[i], "->", activation(np.dot(X[i], w) + b))
+
+import numpy as np
+# Input dataset
+X = np.array([
+    [0,0],
+    [0,1],
+    [1,0],
+    [1,1]
+])
+# Target output (OR)
+T = np.array([0,1,1,1])
+# Initialize
+w = np.zeros(2)
+b = 0
+lr = 0.1
+epochs = 10
+# Activation function
+def activation(yin):
+    return 1 if yin > 0 else 0
+# Training
+for _ in range(epochs):
+    for i in range(len(X)):
+        yin = np.dot(X[i], w) + b
+        y = activation(yin)
+        w = w + lr * (T[i] - y) * X[i]
+        b = b + lr * (T[i] - y)
+print("\nOR Gate")
+print("Final Weights:", w)
+print("Final Bias:", b)
+# Testing
+for i in range(len(X)):
+    print(X[i], "->", activation(np.dot(X[i], w) + b))
