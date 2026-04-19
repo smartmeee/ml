@@ -1,0 +1,53 @@
+import numpy as np
+
+#For AND gate
+X = np.array([ 
+ [-1, -1, 1], 
+ [-1, 1, 1], 
+ [ 1, -1, 1], 
+ [ 1, 1, 1] 
+])
+Y = np.array([-1, -1, -1, 1]) 
+w = np.array([0, 0, 0]) 
+b = 0 
+print("Initial weight:", w) 
+print("Initial bias:", b) 
+print() 
+for i in range(len(X)): 
+ print(f"Iteration {i+1}") 
+ print("Old weight:", w) 
+ w = w + X[i] * Y[i] 
+ b = b + Y[i] 
+ print("Input:", X[i]) 
+ print("Target:", Y[i]) 
+ print("Updated weight:", w) 
+ print("Updated bias:", b) 
+ print() 
+print("Final weight matrix:", w) 
+print("Final bias:", b) 
+
+#For OR gate
+X = np.array([ 
+ [-1, -1, 1], 
+ [-1, 1, 1], 
+ [ 1, -1, 1], 
+ [ 1, 1, 1] 
+]) 
+Y = np.array([-1, 1, 1, 1]) 
+w = np.array([0, 0, 0]) 
+b = 0 
+print("Initial weight:", w) 
+print("Initial bias:", b) 
+print() 
+for i in range(len(X)): 
+ print(f"Iteration {i+1}") 
+ print("Old weight:", w) 
+ w = w + X[i] * Y[i] 
+ b = b + Y[i] 
+ print("Input:", X[i]) 
+ print("Target:", Y[i]) 
+ print("Updated weight:", w) 
+ print("Updated bias:", b) 
+ print() 
+print("Final weight matrix:", w) 
+print("Final bias:", b)
