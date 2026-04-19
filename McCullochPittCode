@@ -1,0 +1,22 @@
+# McCulloch-Pitts Neuron Implementation
+def mp_neuron(inputs, weights, threshold):
+    # Calculate weighted sum
+    net_input = sum(i * w for i, w in zip(inputs, weights))
+    # Apply threshold
+    if net_input >= threshold:
+        return 1
+    else:
+        return 0
+# Example: AND Gate simulation
+inputs_list = [
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
+]
+weights = [1, 1]
+threshold = 2
+print("AND Gate using McCulloch-Pitts Model:")
+for inputs in inputs_list:
+    output = mp_neuron(inputs, weights, threshold)
+    print(f"Input: {inputs} -> Output: {output}")
