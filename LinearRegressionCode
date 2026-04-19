@@ -21,6 +21,10 @@ model = LinearRegression()
 model.fit(X, y)
 
 y_pred = model.predict(X)
+print(y_pred)
+do the above step otherwise do niche wala step
+
+y_pred = model.predict(X)
 new_data = pd.DataFrame([[30, 1, 25.3, 2, 0]],
                         columns=['age', 'sex', 'bmi', 'children', 'smoker'])
 
