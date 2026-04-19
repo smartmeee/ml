@@ -1,0 +1,29 @@
+import pandas as pd
+
+from google.colab import files 
+uploaded = files.upload()
+
+df = pd.read_csv("insurance.csv")
+
+df.shape
+
+df.columns
+
+df.info()
+
+df['sex'] = df['sex'].apply(lambda x: 1 if x == 'female' else 0)
+df['smoker'] = df['smoker'].apply(lambda x: 1 if x == 'yes' else 0)
+X = df[['age', 'sex', 'bmi', 'children', 'smoker']]
+y = df['charges']
+
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X, y)
+
+y_pred = model.predict(X)
+new_data = pd.DataFrame([[30, 1, 25.3, 2, 0]],
+                        columns=['age', 'sex', 'bmi', 'children', 'smoker'])
+
+prediction = model.predict(new_data)
+print(prediction)
+
